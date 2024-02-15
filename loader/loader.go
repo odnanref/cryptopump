@@ -102,7 +102,7 @@ func LoadSessionDataAdditionalComponents(
 		for _, key := range orders {
 
 			tmp := Order{}
-			tmp.OrderID = strconv.Itoa(key.OrderID)                                                                                                         /* Order ID */
+			tmp.OrderID = strconv.FormatInt(key.OrderID, 10)                                                                                                /* Order ID */
 			tmp.Quantity = key.ExecutedQuantity                                                                                                             /* Order Quantity */
 			tmp.Quote = math.Round(key.CumulativeQuoteQuantity*100) / 100                                                                                   /* Quote price */
 			tmp.Price = math.Round(key.Price*10000) / 10000                                                                                                 /* Acquisition Price */

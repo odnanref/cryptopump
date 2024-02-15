@@ -328,8 +328,8 @@ func (fh *myHandler) handler(w http.ResponseWriter, r *http.Request) {
 
 				} else {
 
-					fh.sessionData.ForceSellOrderID = functions.StrToInt(r.PostFormValue("orderID")) /* Force sell a specific orderID */
-					fh.sessionData.ForceSell = true                                                  /* Force sell */
+					fh.sessionData.ForceSellOrderID = functions.StrToInt64(r.PostFormValue("orderID")) /* Force sell a specific orderID */
+					fh.sessionData.ForceSell = true                                                    /* Force sell */
 
 				}
 

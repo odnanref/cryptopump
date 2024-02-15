@@ -83,6 +83,28 @@ func StrToInt(value string) (r int) {
 
 }
 
+// StrToInt64 convert string to int64
+func StrToInt64(value string) (r int64) {
+
+	var err error
+
+	if r, err = strconv.ParseInt(value, 10, 64); err != nil {
+
+		logger.LogEntry{ /* Log Entry */
+			Config:   nil,
+			Market:   nil,
+			Session:  nil,
+			Order:    &types.Order{},
+			Message:  GetFunctionName(),
+			LogLevel: "DebugLevel",
+		}.Do()
+
+	}
+
+	return r
+
+}
+
 // MustGetenv is a helper function for getting environment variables.
 // Displays a warning if the environment variable is not set.
 func MustGetenv(k string) string {
@@ -413,8 +435,11 @@ func GetConfigData(
 
 }
 
-/* This function retrieve the list of configuration files under the root config folder.
-.yaml files are considered configuration files. */
+/*
+	This function retrieve the list of configuration files under the root config folder.
+
+.yaml files are considered configuration files.
+*/
 func getConfigTemplateList(sessionData *types.Session) []string {
 
 	var files []string
@@ -522,11 +547,11 @@ func loadConfigData(
 		BuyRepeatThresholdDownSecondStartCount: viperData.V1.GetInt("config.buy_repeat_threshold_down_second_start_count"),
 		BuyRepeatThresholdUp:                   viperData.V1.GetFloat64("config.buy_repeat_threshold_up"),
 		BuyRsi7Entry:                           viperData.V1.GetFloat64("config.buy_rsi7_entry"),
-		BuyWait:                                viperData.V1.GetInt("config.buy_wait"),
+		BuyWait:                                viperData.V1.GetInt64("config.buy_wait"),
 		ExchangeComission:                      viperData.V1.GetFloat64("config.exchange_comission"),
 		ProfitMin:                              viperData.V1.GetFloat64("config.profit_min"),
-		SellWaitBeforeCancel:                   viperData.V1.GetInt("config.sellwaitbeforecancel"),
-		SellWaitAfterCancel:                    viperData.V1.GetInt("config.sellwaitaftercancel"),
+		SellWaitBeforeCancel:                   viperData.V1.GetInt64("config.sellwaitbeforecancel"),
+		SellWaitAfterCancel:                    viperData.V1.GetInt64("config.sellwaitaftercancel"),
 		SellToCover:                            viperData.V1.GetBool("config.selltocover"),
 		SellHoldOnRSI3:                         viperData.V1.GetFloat64("config.sellholdonrsi3"),
 		Stoploss:                               viperData.V1.GetFloat64("config.stoploss"),

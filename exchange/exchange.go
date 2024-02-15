@@ -481,7 +481,7 @@ S:
 			Market:  marketData,
 			Session: sessionData,
 			Order: &types.Order{
-				OrderID: int(orderResponse.OrderID),
+				OrderID: int64(orderResponse.OrderID),
 				Price:   orderPrice,
 			},
 			Message:  "BUY",
@@ -495,7 +495,7 @@ S:
 			Market:  marketData,
 			Session: sessionData,
 			Order: &types.Order{
-				OrderID: int(orderResponse.OrderID),
+				OrderID: int64(orderResponse.OrderID),
 				Price:   orderPrice,
 			},
 			Message:  "CANCELED",
@@ -670,7 +670,7 @@ S:
 							Market:  marketData,
 							Session: sessionData,
 							Order: &types.Order{
-								OrderID: int(orderResponse.OrderID),
+								OrderID: int64(orderResponse.OrderID),
 							},
 							Message:  functions.GetFunctionName() + " - " + err.Error(),
 							LogLevel: "DebugLevel",
@@ -708,7 +708,7 @@ S:
 						Market:  marketData,
 						Session: sessionData,
 						Order: &types.Order{
-							OrderID: int(orderResponse.OrderID),
+							OrderID: int64(orderResponse.OrderID),
 							Price:   marketData.Price,
 						},
 						Message:  "FAILED TO CANCEL ORDER",
@@ -761,7 +761,7 @@ S:
 			Market:  marketData,
 			Session: sessionData,
 			Order: &types.Order{
-				OrderID:       int(orderResponse.OrderID),
+				OrderID:       int64(orderResponse.OrderID),
 				Price:         marketData.Price,
 				OrderIDSource: order.OrderID,
 			},
@@ -776,7 +776,7 @@ S:
 			Market:  marketData,
 			Session: sessionData,
 			Order: &types.Order{
-				OrderID:       int(orderResponse.OrderID),
+				OrderID:       int64(orderResponse.OrderID),
 				Price:         marketData.Price,
 				OrderIDSource: order.OrderID,
 			},

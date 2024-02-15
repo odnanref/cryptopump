@@ -230,7 +230,7 @@ func UpdateOrder(
 			Market:  nil,
 			Session: sessionData,
 			Order: &types.Order{
-				OrderID: int(OrderID),
+				OrderID: int64(OrderID),
 				Price:   Price,
 			},
 			Message:  functions.GetFunctionName() + " - " + err.Error(),
@@ -493,7 +493,7 @@ func SaveThreadTransaction(
 			Market:  nil,
 			Session: sessionData,
 			Order: &types.Order{
-				OrderID: int(OrderID),
+				OrderID: int64(OrderID),
 				Price:   Price,
 			},
 			Message:  functions.GetFunctionName() + " - " + err.Error(),
@@ -513,7 +513,7 @@ func SaveThreadTransaction(
 // DeleteThreadTransactionByOrderID function
 func DeleteThreadTransactionByOrderID(
 	sessionData *types.Session,
-	orderID int) (err error) {
+	orderID int64) (err error) {
 
 	var rows *sql.Rows /* Rows */
 
@@ -529,7 +529,7 @@ func DeleteThreadTransactionByOrderID(
 			Market:  nil,
 			Session: sessionData,
 			Order: &types.Order{
-				OrderID: int(orderID),
+				OrderID: int64(orderID),
 			},
 			Message:  functions.GetFunctionName() + " - " + err.Error(),
 			LogLevel: "DebugLevel",
@@ -1094,7 +1094,7 @@ func GetThreadTransactionByThreadID(
 
 	for rows.Next() {
 
-		var orderID int
+		var orderID int64
 		var cumulativeQuoteQty, price, executedQuantity string
 		err = rows.Scan(&orderID, &cumulativeQuoteQty, &price, &executedQuantity)
 

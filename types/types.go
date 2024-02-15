@@ -16,15 +16,15 @@ type Order struct {
 	ClientOrderID           string  `json:"clientOrderId"`
 	CumulativeQuoteQuantity float64 `json:"cumulativeQuoteQty"`
 	ExecutedQuantity        float64 `json:"executedQty"`
-	OrderID                 int     `json:"orderId"`
+	OrderID                 int64   `json:"orderId"`
 	Price                   float64 `json:"price"`
 	Side                    string  `json:"side"`
 	Status                  string  `json:"status"`
 	Symbol                  string  `json:"symbol"`
 	TransactTime            int64   `json:"transactTime"`
-	ThreadID                int
-	ThreadIDSession         int
-	OrderIDSource           int /* Used for logging purposes to define source OrderID for a sale */
+	ThreadID                int64
+	ThreadIDSession         int64
+	OrderIDSource           int64 /* Used for logging purposes to define source OrderID for a sale */
 }
 
 // Kline struct define a kline
@@ -88,7 +88,7 @@ type Session struct {
 	ConfigTemplate          int
 	ForceBuy                bool                     /* This boolean when True force BUY transaction */
 	ForceSell               bool                     /* This boolean when True force SELL transaction */
-	ForceSellOrderID        int                      /* This variable stores the OrderID of ForceSell */
+	ForceSellOrderID        int64                    /* This variable stores the OrderID of ForceSell */
 	ListenKey               string                   /* Listen key for user stream service */
 	MasterNode              bool                     /* This boolean is true when Master Node is elected */
 	TgBotAPI                *tgbotapi.BotAPI         /* This variable holds Telegram session bot */
@@ -176,11 +176,11 @@ type Config struct {
 	BuyRepeatThresholdDownSecondStartCount int
 	BuyRepeatThresholdUp                   float64
 	BuyRsi7Entry                           float64
-	BuyWait                                int /* Wait time between BUY transactions in seconds */
+	BuyWait                                int64 /* Wait time between BUY transactions in seconds */
 	ExchangeComission                      float64
 	ProfitMin                              float64
-	SellWaitBeforeCancel                   int     /* Wait time before cancelling a sale in seconds */
-	SellWaitAfterCancel                    int     /* Wait time before selling after a cancel in seconds */
+	SellWaitBeforeCancel                   int64   /* Wait time before cancelling a sale in seconds */
+	SellWaitAfterCancel                    int64   /* Wait time before selling after a cancel in seconds */
 	SellToCover                            bool    /* Define if will sell to cover low funds */
 	SellHoldOnRSI3                         float64 /* Hold sale if RSI3 above defined threshold */
 	Stoploss                               float64 /* Loss as ratio that should trigger a sale */
@@ -243,15 +243,15 @@ type ExecutionReport struct {
 	ExecutionType         string `json:"x"` //Current execution type
 	Status                string `json:"X"` //Current order status
 	OrderRejectReason     string `json:"r"` //Order reject reason; will be an error code.
-	OrderID               int    `json:"i"` //Order ID
+	OrderID               int64  `json:"i"` //Order ID
 	LastExecutedQuantity  string `json:"l"` //Last executed quantity
 	CumulativeQty         string `json:"z"` //Cumulative filled quantity
 	LastExecutedPrice     string `json:"L"` //Last executed price
 	ComissionAmount       string `json:"n"` //Commission amount
 	ComissionAsset        string `json:"N"` //Commission asset
 	TransactTime          int64  `json:"T"` //Transaction time
-	TradeID               int    `json:"t"` //Trade ID
-	Ignore0               int    `json:"I"` //Ignore
+	TradeID               int64  `json:"t"` //Trade ID
+	Ignore0               int64  `json:"I"` //Ignore
 	IsOrderOnTheBook      bool   `json:"w"` //Is the order on the book?
 	IsTradeMakerSide      bool   `json:"m"` //Is this trade the maker side?
 	Ignore1               bool   `json:"M"` //Ignore

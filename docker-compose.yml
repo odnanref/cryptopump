@@ -3,7 +3,7 @@ version: '3.6'
 services:
 
   cryptopump_db:
-    image: andreleibovici/cryptopump_db:latest
+    image: cryptopump_mariadb:netcrash
     container_name: cryptopump_db
     command: --default-authentication-plugin=mysql_native_password
     environment:
@@ -20,7 +20,7 @@ services:
       - backend
 
   cryptopump_app:
-    image: andreleibovici/cryptopump:latest
+    image: cryptopump_app:netcrash
     container_name: cryptopump_app
     restart: always
     environment:
